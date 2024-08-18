@@ -12,12 +12,9 @@ public class User {
     public User(String name, LocalDate birthday){
         this.name = name;
         this.birthday = birthday;
+        age = new DatesCalculator().Age(birthday);
     }
 
-    public void setAge(Period age) {
-    	this.age = age;
-    }
-    
     public String getName() {
     	return name;
     }

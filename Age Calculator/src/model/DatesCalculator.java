@@ -12,51 +12,41 @@ public class DatesCalculator {
 	}
 
 	public Period Age(LocalDate userBirthday) {
-		Period age = Period.between(currentDate, userBirthday);
-		return age;
+		return Period.between(userBirthday, currentDate);
 	}
 
 	public Period AgeComparator(LocalDate user1Birthday, LocalDate user2Birthday) {
-		Period ageComparator = Period.between(user1Birthday, user2Birthday);
-		return ageComparator;
+		return Period.between(user1Birthday, user2Birthday);
 	}
-	
+
 	public int DaysForNextBirthday(LocalDate userBirthday) {
-	    LocalDate nextBirthday = userBirthday.withYear(currentDate.getYear());
-	    if (nextBirthday.isBefore(currentDate) || nextBirthday.isEqual(currentDate)) {
-	        nextBirthday = nextBirthday.plusYears(1);
-	    }
-		int daysForNextBirthday = Long.valueOf(ChronoUnit.DAYS.between(currentDate, nextBirthday)).intValue();
-		return daysForNextBirthday;
+		LocalDate nextBirthday = userBirthday.withYear(currentDate.getYear());
+		if (nextBirthday.isBefore(currentDate) || nextBirthday.isEqual(currentDate))
+			nextBirthday = nextBirthday.plusYears(1);
+		return Long.valueOf(ChronoUnit.DAYS.between(currentDate, nextBirthday)).intValue();
 	}
 
 	public boolean isBirthday(LocalDate userBirthday) {
-		boolean isBirthday = currentDate.equals(userBirthday);
-		return isBirthday;
+		return currentDate.equals(userBirthday);
 	}
 
 	public int AgeInWeeks(LocalDate userBirthday) {
-		int ageInWeeks = AgeInDays(userBirthday) / 7;
-		return ageInWeeks;
+		return AgeInDays(userBirthday) / 7;
 	}
 
 	public int AgeInDays(LocalDate userBirthday) {
-		int ageInDays = Long.valueOf(ChronoUnit.DAYS.between(currentDate, userBirthday)).intValue();
-		return ageInDays;
+		return Long.valueOf(ChronoUnit.DAYS.between(userBirthday, currentDate)).intValue();
 	}
 
 	public int AgeInHours(LocalDate userBirthday) {
-		int ageInHours = AgeInDays(userBirthday) * 24;
-		return ageInHours;
+		return AgeInDays(userBirthday) * 24;
 	}
 
 	public int AgeInMinutes(LocalDate userBirthday) {
-		int ageInMinutes = AgeInHours(userBirthday) * 60;
-		return ageInMinutes;
+		return AgeInHours(userBirthday) * 60;
 	}
 
 	public int AgeInSeconds(LocalDate userBirthday) {
-		int ageInSeconds = AgeInMinutes(userBirthday) * 60;
-		return ageInSeconds;
+		return AgeInMinutes(userBirthday) * 60;
 	}
 }
